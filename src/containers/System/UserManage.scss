@@ -18,3 +18,46 @@ table {
     background-color: #04AA6D;
     color: white;
 }
+
+.modal-user-container {
+        .modal-header {
+            button {
+                background-color: transparent;
+                width: 35px;
+                margin-right: -10px;
+                height: 100%;
+                color: white;
+                font-size: 25px;
+                border: none;
+
+                &:hover {
+                    background-color: rgba(27, 27, 27, 0.1);
+                }
+            }
+        }
+    
+    .modal-user-body {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        // flex-direction: column;
+
+        .input-container {
+            width: 49%;
+            margin-top: 15px;
+
+            &.max-width {
+                width: 100%;
+            }
+
+            input {
+                width: 100%;
+                border: 1px solid rgb(185, 185, 185);
+                outline: none;
+                border-radius: 3px;
+                padding: 10px;
+                height: 30px;
+            }
+        }
+    }
+}

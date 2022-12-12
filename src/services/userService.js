@@ -12,4 +12,16 @@ const createNewUserService = async (data) => {
     return await axios.post('/api/create-new-user', data)
 }
 
-export { handleLoginApi, getAllUsers, createNewUserService }
+const EditUserService = async(data) => {
+    return await axios.put('/api/edit-user', data);
+}
+
+const deleteUserService = async (id) => {
+    return await axios.delete('/api/delete-user', {
+        data: {
+            id
+        }
+    })
+}
+
+export { handleLoginApi, getAllUsers, createNewUserService, EditUserService, deleteUserService }

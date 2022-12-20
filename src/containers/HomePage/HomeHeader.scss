@@ -65,9 +65,17 @@
                 padding: 8px;
                 cursor: pointer;
                 font-size: 15px;
+                opacity: 0.3;
 
-                &:active {
-                    color: #49bce2;
+                &:hover {
+                    opacity: 1;
+                }
+
+                &.active {
+                    opacity: 1;
+                    span {
+                        color: #49bce2;
+                    }
                 }
             }
         }

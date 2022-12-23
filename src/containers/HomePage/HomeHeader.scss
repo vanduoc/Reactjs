@@ -1,6 +1,9 @@
 .home-header-container {
     height: 78px;
     width: 100%;
+    background-color: white;
+    position: fixed;
+    z-index: 99;
 
     .home-header-content {
         width: 100%;
@@ -159,10 +162,14 @@
         .options {
             display: flex;
             justify-content: center;
-            gap: 70px;
+            align-items: center;
+            flex-wrap: wrap;
+            // gap: 30px;
             text-align: center;
             .option-child {
-                width: 125px;
+                width: 190px;
+                padding: 10px;
+                cursor: pointer;
 
                 &:hover {
                     color: #49bce2;
@@ -194,3 +201,5 @@
         }
     }
 }
+
+

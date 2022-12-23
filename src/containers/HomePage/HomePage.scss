@@ -1,0 +1,203 @@
+.section-common {
+    &.section-specialty {
+        background-color: white;
+    }
+    &.section-medical-facility {
+        background-color: #f5f5f5;
+    }
+    &.section-outstanding-doctor {
+        background-color: white;
+    }
+
+    &.section-handbook {
+        background-color: #f5f5f5;
+    }
+
+    &.section-about {
+        background-color: white;
+    }
+}
+
+.section-container {
+    width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 25px;
+    padding-bottom: 35px;
+
+    .section-header {
+        height: 60px;
+        margin: 15px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .title-section {
+            font-weight: 600;
+        }
+        .btn-section {
+            display: block;
+            background: #ebebeb;
+            text-transform: uppercase;
+            padding: 10px 15px;
+            border: none;
+            outline: none;
+            color: rgb(97, 97, 97);
+            cursor: pointer;
+
+            &:hover {
+                color: #fff;
+                background-color: #f7d800;
+            }
+        }
+    }
+
+    .section-body {
+        .section-customize {
+            padding: 5px;
+            cursor: pointer;
+
+            &:hover {
+                color: #49bce2;
+            }
+            .border-customize {
+                border: 1px solid #f5f5f5;
+
+                .outer-bg {
+                    height: 245px;
+                }
+            }
+            .bg-img {
+                width: 100%;
+                padding-top: 56.25%;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: #eee;
+
+                &.specialty-img {
+                    background-image: url('../../assets/images/specialty/co-xuong-khop.jpg');
+                }
+                &.medical-facility-img {
+                    background-image: url('../../assets/images/medicalFacility/benh-vien-cho-ray-h1.jpg');
+                }
+                &.outstanding-doctor-img {
+                    background-image: url('../../assets/images/outStandingDoctor/bs-hoai-huong.jpg');
+                    width: 120px;
+                    height: 120px;
+                    padding-top: 0;
+                    margin: 15px auto 0 auto;
+                    border-radius: 50%;
+                }
+                &.handbook-img {
+                    height: 150px;
+                    float: left;
+                    width: 50%;
+                    padding-top: 0;
+                    background-image: url('../../assets/images/handbook/nha-khoa-peace-30.jpg');
+
+                    & ~ .section-title {
+                        width: 50%;
+                        float: right;
+                        padding-left: 10px;
+                        padding-top: 3px;
+                        font-weight: 600;
+                        font-size: 18px;
+                    }
+                }
+            }
+
+            .section-title {
+                padding-top: 8px;
+
+                h3 {
+                    font-size: 14px;
+                    padding: 0 15px;
+                }
+                span {
+                    color: rgb(97, 97, 97) !important;
+                }
+            }
+
+        }
+
+        &.section-about-content {
+            display: flex;
+            width: 100%;
+            .content-left {
+                width: 50%;
+            }
+            .content-right {
+                width: 50%;
+                padding-top: 3px;
+                font-style: italic;
+                padding-left: 20px;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+//override slick css
+
+.slick-prev {
+    width: 44px;
+    height: 48px;
+    left: 10px;
+    z-index: 10 ;
+    cursor: pointer;
+    opacity: .7;
+
+    &:hover {
+        opacity: 1;
+        // background-color: white;
+    }
+
+    &::before {
+        // font-family: FontAwesome;
+        // content: '<';
+        // color:  #333;
+        font-size: 40px;
+        // font-weight: 600;
+    }
+}
+
+.slick-next {
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    opacity: .7;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1;
+        // background-color: white;
+    }
+
+    &::before {
+        font-size: 40px;
+    }
+}
+
+.home-footer {
+    background-color: #49bce2;
+    text-align: center;
+    
+    p {
+        color: white;
+        margin: 0;
+        display: inline-block;
+        padding: 20px 0 10px 0;
+    }
+    
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 20px 0 10px 0;
+        color: white;
+
+        &:hover {
+            opacity: .9;
+        }
+    }
+}

@@ -22,9 +22,9 @@ class About extends Component {
                             height="315" 
                             src="https://www.youtube.com/embed/utF5vj7Ljuo" 
                             title="YouTube video player" 
-                            frameborder="0"
+                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen></iframe>
+                            allowFullScreen></iframe>
                         </div>
                         <div className='content-right'>
                         Từ Đất Nước viết hoa diễn tả tình cảm thiêng liêng đối với Đất Nước. Giọng thơ trữ tình, câu thơ dài ngắn đan xen thể hiện cảm xúc tự nhiên, phóng khoáng. Ngôn ngữ giản dị, sử dụng sáng tạo các chất liệu từ văn học dân gian tạo chiều sâu cho ý thơ. Đất Nước đối với Nguyễn Khoa Điềm là những gì bình thường, gần gũi nhất. Nó có trong cổ tích, ca dao, gắn liền với nguồn mạch quê hương để làm nên một chân dung trọn vẹn về Đất Nước: Thân thương mà hào hùng, vất vả mà thủy chung.

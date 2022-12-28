@@ -26,10 +26,13 @@
         align-items: center;
 
         .languages {
-            margin-right: 30px;
-            .language-vi {
+            margin-right: 20px;
+
+            .welcome {
                 margin-right: 15px;
-                margin-left: 10px;
+            }
+            .language-vi {
+                padding: 5px;
                 cursor: pointer;
                 opacity: .8;
 
@@ -39,6 +42,7 @@
                 }
             }
             .language-en {
+                padding: 5px;
                 cursor: pointer;
                 opacity: .8;
 

@@ -24,4 +24,8 @@ const deleteUserService = async (id) => {
     })
 }
 
-export { handleLoginApi, getAllUsers, createNewUserService, EditUserService, deleteUserService }
+const getAllCodeService = async (inputData) => {
+    return await axios.get(`/allcode?type=${inputData}`);
+}
+
+export { handleLoginApi, getAllUsers, createNewUserService, EditUserService, deleteUserService, getAllCodeService }

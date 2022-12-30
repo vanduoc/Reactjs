@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { getAllCodeService } from '../../../services/userService';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 import { LANGUAGES} from '../../../utils/constant';
 import * as actions from '../../../store/actions';
+import './UserRedux.scss'
 
 class UserRedux extends Component {
     constructor(props) {
@@ -11,34 +13,16 @@ class UserRedux extends Component {
         this.state = {
             genderArr: [],
             roleArr: [],
-            positionArr: []
+            positionArr: [],
+            uploadImageUrl: '',
+            isOpenLightbox: false
         };
     }
 
     async componentDidMount() {
         this.props.getGenderStart();
-        // try {
-        //     let genders = await getAllCodeService('gender');
-        //     if (genders && genders.errCode === 0) {
-        //         this.setState({
-        //             genderArr: genders.data
-        //         })
-        //     }
-        //     let roles = await getAllCodeService('role');
-        //     if (roles && roles.errCode === 0) {
-        //         this.setState({
-        //             roleArr: roles.data
-        //         })
-        //     }
-        //     let positions = await getAllCodeService('position');
-        //     if (positions && positions.errCode === 0) {
-        //         this.setState({
-        //             positionArr: positions.data
-        //         })
-        //     }
-        // } catch (error) {
-        //     console.log(error);
-        // }
+        this.props.getPositionStart();
+        this.props.getRoleStart();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -47,6 +31,25 @@ class UserRedux extends Component {
                 genderArr: this.props.genderRedux
             })
         }
+        if (prevProps.positionRedux !== this.props.positionRedux) {
+            this.setState({
+                positionArr: this.props.positionRedux
+            })
+        }
+        if (prevProps.roleRedux !== this.props.roleRedux) {
+            this.setState({
+                roleArr: this.props.roleRedux
+            })
+        }
+    }
+
+    handleChangeImage = (e) => {
+        let files = e.target.files;
+        let file = files[0];
+        let objectUrl = URL.createObjectURL(file);
+        this.setState({
+            uploadImageUrl: objectUrl
+        })
     }
 
 
@@ -55,6 +58,10 @@ class UserRedux extends Component {
         let roles = this.state.roleArr;
         let positions = this.state.positionArr;
         let language = this.props.language;
+        let isLoadingGender = this.props.isLoadingGender;
+        let isLoadingPosition = this.props.isLoadingPosition;
+        let isLoadingRole = this.props.isLoadingRole;
+        let uploadImageUrl = this.state.uploadImageUrl;
         return (
             <div className='user-redux-container'>
                 <div className='title'>
@@ -63,6 +70,7 @@ class UserRedux extends Component {
                 <div className='user-redux-body'>
                     <div className='container'>
                         <div className='row'>
+                            <div className='col-12'>{isLoadingGender || isLoadingPosition || isLoadingRole ? 'On Loading Data': ''}</div>
                             <div className='col-12'><h4 style={{'text-transform': 'uppercase'}}><FormattedMessage id='manage-user.add'/></h4></div>
                             <div className='col-3 form-group'>
                                 <label for='email'><FormattedMessage id='manage-user.email'/></label>
@@ -114,12 +122,18 @@ class UserRedux extends Component {
                             </div>
                             <div className='col-3 form-group'>
                                 <label for="Image"><FormattedMessage id='manage-user.image'/></label>
-                                <select id='Image' className='form-control'>
-                                    <option selected>Choose...</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
+                                <div className='preview-image-container'>
+                                    <input type='file' id='previewImg' className='form-control' onChange={this.handleChangeImage} hidden/>
+                                    <label htmlFor='previewImg' className='label-upload'>Tải ảnh <i class="fas fa-upload"></i></label>
+                                    {uploadImageUrl && <div className='preview-image' onClick={()=>{this.setState({isOpenLightbox: true});}} style={{backgroundImage: `url(${uploadImageUrl})`, cursor: 'pointer'}}></div>}
+                                </div>  
                             </div>
+                            {console.log(this.state.isOpenLighbox)}
+                            {this.state.isOpenLightbox && 
+                            <Lightbox
+                                mainSrc={uploadImageUrl}
+                                onCloseRequest={() =>{this.setState({ isOpenLightbox: false })}}
+                            />}
                             <div className='col-12 mt-3'><button className='btn btn-primary'><FormattedMessage id='manage-user.save'/></button></div>
                         </div>
                     </div>
@@ -133,13 +147,20 @@ class UserRedux extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
-        genderRedux: state.admin.genders
+        isLoadingGender: state.admin.isLoadingGender,
+        isLoadingPosition: state.admin.isLoadingPosition,
+        isLoadingRole: state.admin.isLoadingRole,
+        genderRedux: state.admin.genders,
+        positionRedux: state.admin.positions,
+        roleRedux: state.admin.roles
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         getGenderStart: () => dispatch(actions.fetchGenderStart()),
+        getRoleStart: () => dispatch(actions.fetchRoleStart()),
+        getPositionStart: () => dispatch(actions.fetchPositionStart()),
     };
 };
 

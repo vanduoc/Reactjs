@@ -1,0 +1,26 @@
+.preview-image-container {
+    .label-upload {
+        background-color: #dedede;
+        padding: 5px 10px;
+        font-size: 16px;
+        // font-weight: 600;
+        border-radius: 3px;
+        cursor: pointer;
+
+        i {
+            margin-left: 3px;
+        }
+
+        &:hover {
+            opacity: .9;
+    }
+    }
+    .preview-image {
+        height: 50px;
+        margin-top: 5px;
+        border: 1px solid red;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+    }
+}

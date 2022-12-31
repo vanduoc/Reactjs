@@ -26,6 +26,9 @@ class UserRedux extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevState.uploadImageUrl && prevState.uploadImageUrl !== this.state.uploadImageUrl) {
+            URL.revokeObjectURL(prevState.uploadImageUrl);
+        }
         if (prevProps.genderRedux !== this.props.genderRedux) {
             this.setState({
                 genderArr: this.props.genderRedux

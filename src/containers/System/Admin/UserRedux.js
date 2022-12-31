@@ -15,7 +15,18 @@ class UserRedux extends Component {
             roleArr: [],
             positionArr: [],
             uploadImageUrl: '',
-            isOpenLightbox: false
+            isOpenLightbox: false,
+
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            phoneNumber: '',
+            address: '',
+            gender: '',
+            position: '',
+            role: '',
+            avatar: ''
         };
     }
 
@@ -30,18 +41,24 @@ class UserRedux extends Component {
             URL.revokeObjectURL(prevState.uploadImageUrl);
         }
         if (prevProps.genderRedux !== this.props.genderRedux) {
+            let arrGenders = this.props.genderRedux;
             this.setState({
-                genderArr: this.props.genderRedux
+                genderArr: arrGenders,
+                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : ''
             })
         }
         if (prevProps.positionRedux !== this.props.positionRedux) {
+            let arrPositions = this.props.positionRedux;
             this.setState({
-                positionArr: this.props.positionRedux
+                positionArr: arrPositions,
+                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].key : ''
             })
         }
         if (prevProps.roleRedux !== this.props.roleRedux) {
+            let arrRoles = this.props.roleRedux;
             this.setState({
-                roleArr: this.props.roleRedux
+                roleArr: arrRoles,
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : ''
             })
         }
     }
@@ -51,20 +68,47 @@ class UserRedux extends Component {
         let file = files[0];
         let objectUrl = URL.createObjectURL(file);
         this.setState({
-            uploadImageUrl: objectUrl
+            uploadImageUrl: objectUrl,
+            avatar: file
         })
     }
 
+    handleSaveUser = () => {
+        let {genderArr, roleArr, positionArr, uploadImageUrl, isOpenLightbox, ...dataInput} = this.state;
+        let isValid = this.checkValidateInput(dataInput);
+        if (isValid) {
+            this.props.createNewUserRedux(dataInput);
+        }
+        else return;
+    }
+
+    checkValidateInput = (data) => {
+        let id = ["email", "password", "firstName", "lastName", "phoneNumber", "address", "gender", "position", "role"]
+        for( let x of id) {
+            if (!data[x]) {
+                alert('Missing parameter ' + x);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    handleChangeInput = (e,inputName) => {
+        this.setState({
+            [inputName]: e.target.value
+        })
+    }
 
     render() {
         let genders = this.state.genderArr;
         let roles = this.state.roleArr;
         let positions = this.state.positionArr;
+        let uploadImageUrl = this.state.uploadImageUrl;
+        let { email, password, firstName, lastName, phoneNumber, address, gender, position, role, avatar } = this.state;
         let language = this.props.language;
         let isLoadingGender = this.props.isLoadingGender;
         let isLoadingPosition = this.props.isLoadingPosition;
         let isLoadingRole = this.props.isLoadingRole;
-        let uploadImageUrl = this.state.uploadImageUrl;
         return (
             <div className='user-redux-container'>
                 <div className='title'>
@@ -74,70 +118,69 @@ class UserRedux extends Component {
                     <div className='container'>
                         <div className='row'>
                             <div className='col-12'>{isLoadingGender || isLoadingPosition || isLoadingRole ? 'On Loading Data': ''}</div>
-                            <div className='col-12'><h4 style={{'text-transform': 'uppercase'}}><FormattedMessage id='manage-user.add'/></h4></div>
+                            <div className='col-12'><h4 style={{'textTransform': 'uppercase'}}><FormattedMessage id='manage-user.add'/></h4></div>
                             <div className='col-3 form-group'>
-                                <label for='email'><FormattedMessage id='manage-user.email'/></label>
-                                <input id="email" className='form-control' type='email' />
+                                <label htmlFor='email'><FormattedMessage id='manage-user.email'/></label>
+                                <input id="email" value={email} onChange={(e) => this.handleChangeInput(e, 'email')} className='form-control' type='email' />
                             </div>
                             <div className='col-3 form-group'>
-                                <label for='password'><FormattedMessage id='manage-user.password'/></label>
-                                <input id="password" className='form-control' type='password' />
+                                <label htmlFor='password'><FormattedMessage id='manage-user.password'/></label>
+                                <input id="password" value={password} onChange={(e) => this.handleChangeInput(e, 'password')} className='form-control' type='password' />
                             </div>
                             <div className='col-3 form-group'>
-                                <label for='firstName'><FormattedMessage id='manage-user.first-name'/></label>
-                                <input id="firstName" className='form-control' type='text' />
+                                <label htmlFor='firstName'><FormattedMessage id='manage-user.first-name'/></label>
+                                <input id="firstName" value={firstName} onChange={(e) => this.handleChangeInput(e, 'firstName')} className='form-control' type='text' />
                             </div>
                             <div className='col-3 form-group'>
-                                <label for='lastName'><FormattedMessage id='manage-user.last-name'/></label>
-                                <input id="lastName" className='form-control' type='text' />
+                                <label htmlFor='lastName'><FormattedMessage id='manage-user.last-name'/></label>
+                                <input id="lastName" value={lastName} onChange={(e) => this.handleChangeInput(e, 'lastName')} className='form-control' type='text' />
                             </div>
                             <div className='col-3 form-group'>
-                                <label for="phoneNumber"><FormattedMessage id='manage-user.phone-number'/></label>
-                                <input className='form-control' id='phoneNumber' type="text"/>
+                                <label htmlFor="phoneNumber"><FormattedMessage id='manage-user.phone-number'/></label>
+                                <input className='form-control' value={phoneNumber} onChange={(e) => this.handleChangeInput(e, 'phoneNumber')} id='phoneNumber' type="text"/>
                             </div>
                             <div className='col-9 form-group'>
-                                <label for="address"><FormattedMessage id='manage-user.address'/></label>
-                                <input className='form-control' id='address' type="text" />
+                                <label htmlFor="address"><FormattedMessage id='manage-user.address'/></label>
+                                <input className='form-control' value={address} onChange={(e) => this.handleChangeInput(e, 'address')} id='address' type="text" />
                             </div>
                             <div className='col-3 form-group'>
-                                <label for="gender"><FormattedMessage id='manage-user.gender'/></label>
-                                <select id='gender' className='form-control'>
+                                <label htmlFor="gender"><FormattedMessage id='manage-user.gender'/></label>
+                                <select id='gender' className='form-control' value={gender} onChange={(e) => this.handleChangeInput(e, 'gender')}>
                                     { genders && genders.length > 0 && genders.map((gender, index) => {
                                         return <option key={index} value={gender.key}>{language === LANGUAGES.VI ? gender.valueVi : gender.valueEn}</option>
                                     })}
                                 </select>
                             </div>
                             <div className='col-3 form-group'>
-                                <label for="postion"><FormattedMessage id='manage-user.position'/></label>
-                                <select id='postion' className='form-control'>
+                                <label htmlFor="postion"><FormattedMessage id='manage-user.position'/></label>
+                                <select id='postion' className='form-control' value={position} onChange={(e) => this.handleChangeInput(e, 'position')}>
                                 { positions && positions.length > 0 && positions.map((position, index) => {
                                         return <option key={index} value={position.key}>{language === LANGUAGES.VI ? position.valueVi : position.valueEn}</option>
                                     })}
                                 </select>
                             </div>
                             <div className='col-3 form-group'>
-                                <label for="roleId"><FormattedMessage id='manage-user.role'/></label>
-                                <select id='roleId' className='form-control'>
+                                <label htmlFor="role"><FormattedMessage id='manage-user.role'/></label>
+                                <select id='role' className='form-control' value={role} onChange={(e) => this.handleChangeInput(e, 'role')}>
                                 { roles && roles.length > 0 && roles.map((role, index) => {
                                         return <option key={index} value={role.key}>{language === LANGUAGES.VI ? role.valueVi : role.valueEn}</option>
                                     })}
                                 </select>
                             </div>
                             <div className='col-3 form-group'>
-                                <label for="Image"><FormattedMessage id='manage-user.image'/></label>
+                                <label htmlFor="Image"><FormattedMessage id='manage-user.image'/></label>
                                 <div className='preview-image-container'>
                                     <input type='file' id='previewImg' className='form-control' onChange={this.handleChangeImage} hidden/>
-                                    <label htmlFor='previewImg' className='label-upload'>Tải ảnh <i class="fas fa-upload"></i></label>
+                                    <label htmlFor='previewImg' className='label-upload'>Tải ảnh <i className="fas fa-upload"></i></label>
                                     {uploadImageUrl && <div className='preview-image' onClick={()=>{this.setState({isOpenLightbox: true});}} style={{backgroundImage: `url(${uploadImageUrl})`, cursor: 'pointer'}}></div>}
                                 </div>  
                             </div>
-                            {console.log(this.state.isOpenLighbox)}
                             {this.state.isOpenLightbox && 
                             <Lightbox
                                 mainSrc={uploadImageUrl}
                                 onCloseRequest={() =>{this.setState({ isOpenLightbox: false })}}
                             />}
-                            <div className='col-12 mt-3'><button className='btn btn-primary'><FormattedMessage id='manage-user.save'/></button></div>
+                            <div className='col-12 mt-3'><button type='submit' className='btn btn-primary' onClick={this.handleSaveUser}><FormattedMessage id='manage-user.save'/></button></div>
                         </div>
                     </div>
                 </div>
@@ -164,6 +207,7 @@ const mapDispatchToProps = dispatch => {
         getGenderStart: () => dispatch(actions.fetchGenderStart()),
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
         getPositionStart: () => dispatch(actions.fetchPositionStart()),
+        createNewUserRedux: (data) => dispatch(actions.createNewUser(data))
     };
 };
 

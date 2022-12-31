@@ -60,6 +60,13 @@ const adminReducer = (state = initialState, action) => {
                 roles: [],
                 isLoadingRole: false
             }
+
+        case actionTypes.CREATE_USER_SUCCESS:
+            console.log('create new user success');
+            return state;
+        case actionTypes.CREATE_USER_FAILED:
+            console.log('Create user failed: ', action.message);
+            return state;
         default:
             return state;
     }

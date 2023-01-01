@@ -1,5 +1,6 @@
 import actionTypes from './actionTypes';
-import { getAllCodeService, createNewUserService } from '../../services/userService';
+import { toast } from 'react-toastify';
+import { getAllCodeService, createNewUserService, getAllUsers, deleteUserService } from '../../services/userService';
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -82,10 +83,16 @@ export const createNewUser = (data) => {
         try {
             let res = await createNewUserService(data);
             if (res && res.errCode === 0) {
+                toast.success("Create a new user successfully!");
                 dispatch(createUserSuccess());
+                dispatch(fetchAllUserStart());
             }
-            else dispatch(createUserFailed(res.message));
+            else {
+                toast.error("Create a new user failed!");
+                dispatch(createUserFailed(res.message));
+            }
         } catch (error) {
+            toast.error("Create a new user failed!");
             dispatch(createUserFailed(error));
         }
     }
@@ -99,3 +106,56 @@ const createUserFailed = (message) => ({
     type: actionTypes.CREATE_USER_FAILED,
     message
 })
+
+export const deleteAUser = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteUserService(id);
+            if (res && res.errCode === 0) {
+                toast.success("Delete the user successfully!");
+                dispatch(deleteAUserSuccess());
+                dispatch(fetchAllUserStart());
+            }
+            else {
+                toast.error("Delete the user failed!");
+                dispatch(deleteAUserFailed());
+            }
+        } catch (error) {
+            toast.error("Delete the user failed!");
+            dispatch(deleteAUserFailed());
+        }
+    }
+}
+
+const deleteAUserSuccess = () => ({
+    type: actionTypes.DELETE_USER_SUCCESS,
+})
+
+const deleteAUserFailed = () => ({
+    type: actionTypes.DELETE_USER_FAILED
+})
+
+export const fetchAllUserStart = () =>  {
+    return async(dispatch, getState) => {
+        dispatch({type: actionTypes.FETCH_ALL_USER_START});
+        try {
+            let res = await getAllUsers('ALL');
+            if (res && res.errCode === 0 && res.users) {
+                dispatch(fetchAllUserSuccess(res.users.reverse()));
+            }
+            else dispatch(fetchAllUserFailed());
+        } catch (error) {
+            dispatch(fetchAllUserFailed());
+        }
+    }
+}
+
+const fetchAllUserSuccess = (data) => ({
+    type: actionTypes.FETCH_ALL_USER_SUCCESS,
+    data
+})
+
+const fetchAllUserFailed = () => ({
+    type: actionTypes.FETCH_ALL_USER_FAILED,
+})
+

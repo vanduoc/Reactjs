@@ -5,6 +5,7 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import { LANGUAGES} from '../../../utils/constant';
 import * as actions from '../../../store/actions';
+import TableManageUser from './TableManageUser';
 import './UserRedux.scss'
 
 class UserRedux extends Component {
@@ -93,7 +94,7 @@ class UserRedux extends Component {
         return true;
     }
 
-    handleChangeInput = (e,inputName) => {
+    handleChangeInput = (e, inputName) => {
         this.setState({
             [inputName]: e.target.value
         })
@@ -181,6 +182,7 @@ class UserRedux extends Component {
                                 onCloseRequest={() =>{this.setState({ isOpenLightbox: false })}}
                             />}
                             <div className='col-12 mt-3'><button type='submit' className='btn btn-primary' onClick={this.handleSaveUser}><FormattedMessage id='manage-user.save'/></button></div>
+                            <div className='col-12 mt-5'><TableManageUser /></div>
                         </div>
                     </div>
                 </div>

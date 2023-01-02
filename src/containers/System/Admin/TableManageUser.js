@@ -47,7 +47,7 @@ class TableManageUser extends Component {
                                     <td>{user.email}</td>
                                     <td>{user.address}</td>
                                     <td>
-                                        <button>Edit</button>
+                                        <button onClick={() => this.props.handleEditUserFromParent(user)}>Edit</button>
                                         <button onClick={() => this.props.deleteAUserRedux(user.id)}>Delete</button>
                                     </td>
                                 </tr>

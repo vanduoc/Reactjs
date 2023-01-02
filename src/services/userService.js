@@ -12,7 +12,7 @@ const createNewUserService = async (data) => {
     return await axios.post('/api/create-new-user', data)
 }
 
-const EditUserService = async(data) => {
+const editUserService = async(data) => {
     return await axios.put('/api/edit-user', data);
 }
 
@@ -28,4 +28,4 @@ const getAllCodeService = async (inputData) => {
     return await axios.get(`/allcode?type=${inputData}`);
 }
 
-export { handleLoginApi, getAllUsers, createNewUserService, EditUserService, deleteUserService, getAllCodeService }
+export { handleLoginApi, getAllUsers, createNewUserService, editUserService, deleteUserService, getAllCodeService }

@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-import { LANGUAGES, CRUD_ACTIONS} from '../../../utils/constant';
+import { LANGUAGES, CRUD_ACTIONS, CommonUtils} from '../../../utils';
 import * as actions from '../../../store/actions';
 import TableManageUser from './TableManageUser';
 import './UserRedux.scss'
@@ -81,19 +81,24 @@ class UserRedux extends Component {
                 role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : '',
                 avatar: '',
                 userEditId: '',
+                uploadImageUrl: '',
                 action: CRUD_ACTIONS.CREATE,
             })
         }
     }
 
-    handleChangeImage = (e) => {
+    handleChangeImage = async (e) => {
         let files = e.target.files;
-        let file = files[0];
-        let objectUrl = URL.createObjectURL(file);
-        this.setState({
-            uploadImageUrl: objectUrl,
-            avatar: file
-        })
+        if(files.length > 0) {
+            let file = files[0];
+            let fileToBase64 = await CommonUtils.convertFileToBase64(file);
+            console.log(fileToBase64);
+            let objectUrl = URL.createObjectURL(file);
+            this.setState({
+                uploadImageUrl: objectUrl,
+                avatar: fileToBase64
+            })
+        }
     }
 
     checkValidateInput = (data) => {
@@ -114,7 +119,11 @@ class UserRedux extends Component {
     }
 
     handleEditUserFromParent = (user) => {
-        let {email, address, firstName, lastName, phoneNumber, gender, avatar} = user;
+        let imageBase64 ='';
+        if (user.image) {
+            imageBase64 = new Buffer(user.image, 'base64').toString('binary');
+        }
+        let {email, address, firstName, lastName, phoneNumber, gender} = user;
         this.setState({
             email,
             password: 'HASHCODE',
@@ -125,10 +134,11 @@ class UserRedux extends Component {
             gender,
             position: user.positionId,
             role: user.roleId,
-            avatar,
+            avatar: '',
+            uploadImageUrl: imageBase64,
             action: CRUD_ACTIONS.EDIT,
             userEditId: user.id
-        });
+        }, console.log(this.state));
     }
 
     handleSaveUser = () => {
@@ -142,8 +152,8 @@ class UserRedux extends Component {
             gender: this.state.gender,
             positionId: this.state.position,
             roleId: this.state.role,
-            avatar: this.state.avatar,
-            id: this.state.userEditId
+            image: this.state.avatar,
+            id: this.state.userEditId,
         }
         let isValid = this.checkValidateInput(dataInput);
         if (isValid) {
@@ -237,8 +247,8 @@ class UserRedux extends Component {
                                 onCloseRequest={() =>{this.setState({ isOpenLightbox: false })}}
                             />}
                             <div className='col-12 mt-3'>
-                                <button className={action === CRUD_ACTIONS.CREATE ? 'btn btn-primary': 'btn btn-warning'} onClick={this.handleSaveUser}>
-                                    <FormattedMessage id={action === CRUD_ACTIONS.CREATE? 'manage-user.save': 'manage-user.edit'}/>
+                                <button className={action === CRUD_ACTIONS.EDIT ?  'btn btn-warning':'btn btn-primary'} onClick={this.handleSaveUser}>
+                                    <FormattedMessage id={action === CRUD_ACTIONS.EDIT? 'manage-user.edit': 'manage-user.save'}/>
                                 </button>
                                 </div>
                             <div className='col-12 mt-5'><TableManageUser handleEditUserFromParent={this.handleEditUserFromParent} /></div>

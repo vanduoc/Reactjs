@@ -47,21 +47,21 @@ class UserRedux extends Component {
             let arrGenders = this.props.genderRedux;
             this.setState({
                 genderArr: arrGenders,
-                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : ''
+                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : ''
             })
         }
         if (prevProps.positionRedux !== this.props.positionRedux) {
             let arrPositions = this.props.positionRedux;
             this.setState({
                 positionArr: arrPositions,
-                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].key : ''
+                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].keyMap : ''
             })
         }
         if (prevProps.roleRedux !== this.props.roleRedux) {
             let arrRoles = this.props.roleRedux;
             this.setState({
                 roleArr: arrRoles,
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : ''
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : ''
             })
         }
 
@@ -76,9 +76,9 @@ class UserRedux extends Component {
                 lastName: '',
                 phoneNumber: '',
                 address: '',
-                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : '',
-                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].key : '',
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : '',
+                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : '',
+                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].keyMap : '',
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : '',
                 avatar: '',
                 userEditId: '',
                 uploadImageUrl: '',
@@ -138,7 +138,7 @@ class UserRedux extends Component {
             uploadImageUrl: imageBase64,
             action: CRUD_ACTIONS.EDIT,
             userEditId: user.id
-        }, console.log(this.state));
+        });
     }
 
     handleSaveUser = () => {
@@ -213,7 +213,7 @@ class UserRedux extends Component {
                                 <label htmlFor="gender"><FormattedMessage id='manage-user.gender'/></label>
                                 <select id='gender' className='form-control' value={gender} onChange={(e) => this.handleChangeInput(e, 'gender')}>
                                     { genders && genders.length > 0 && genders.map((gender, index) => {
-                                        return <option key={index} value={gender.key}>{language === LANGUAGES.VI ? gender.valueVi : gender.valueEn}</option>
+                                        return <option key={index} value={gender.keyMap}>{language === LANGUAGES.VI ? gender.valueVi : gender.valueEn}</option>
                                     })}
                                 </select>
                             </div>
@@ -221,7 +221,7 @@ class UserRedux extends Component {
                                 <label htmlFor="postion"><FormattedMessage id='manage-user.position'/></label>
                                 <select id='postion' className='form-control' value={position} onChange={(e) => this.handleChangeInput(e, 'position')}>
                                 { positions && positions.length > 0 && positions.map((position, index) => {
-                                        return <option key={index} value={position.key}>{language === LANGUAGES.VI ? position.valueVi : position.valueEn}</option>
+                                        return <option key={index} value={position.keyMap}>{language === LANGUAGES.VI ? position.valueVi : position.valueEn}</option>
                                     })}
                                 </select>
                             </div>
@@ -229,7 +229,7 @@ class UserRedux extends Component {
                                 <label htmlFor="role"><FormattedMessage id='manage-user.role'/></label>
                                 <select id='role' className='form-control' value={role} onChange={(e) => this.handleChangeInput(e, 'role')}>
                                 { roles && roles.length > 0 && roles.map((role, index) => {
-                                        return <option key={index} value={role.key}>{language === LANGUAGES.VI ? role.valueVi : role.valueEn}</option>
+                                        return <option key={index} value={role.keyMap}>{language === LANGUAGES.VI ? role.valueVi : role.valueEn}</option>
                                     })}
                                 </select>
                             </div>

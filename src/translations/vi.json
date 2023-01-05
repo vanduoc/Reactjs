@@ -50,6 +50,15 @@
         "image": "Ảnh",
         "save": "Lưu người dùng",
         "edit": "Lưu thay đổi"
+    },
+    "homepage": {
+        "popular-specialty": "Chuyên khoa phổ biến",
+        "medical-facility": "Cơ sở y tế nổi bật",
+        "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
+        "handbook": "Cẩm nang",
+        "more-info": "Xem thêm",
+        "search": "Tìm kiếm",
+        "all-posts": "Tất cả bài viết"
     }
     
 }

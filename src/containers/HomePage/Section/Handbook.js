@@ -21,8 +21,8 @@ class Handbook extends Component {
             <div className='section-common section-handbook'>
                 <div className='section-container'>
                     <div className='section-header'>
-                        <h2 className='title-section'>Cẩm nang</h2>
-                        <button className='btn-section'>Tất cả bài viết</button>
+                        <h2 className='title-section'><FormattedMessage id="homepage.handbook"/></h2>
+                        <button className='btn-section'><FormattedMessage id="homepage.all-posts"/></button>
                     </div>
                 <div className='section-body'>
                     <Slider {...settings}>

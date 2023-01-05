@@ -9,23 +9,15 @@ import "slick-carousel/slick/slick-theme.css";
 class MedicalFacility extends Component {
 
     render() {
-        let settings = {
-            dots: false,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 1
-          };
-
         return (
             <div className='section-common section-medical-facility'>
                 <div className='section-container'>
                     <div className='section-header'>
-                        <h2 className='title-section'>Cơ sở y tế nổi bật</h2>
-                        <button className='btn-section'>Tìm kiếm</button>
+                        <h2 className='title-section'><FormattedMessage id='homepage.medical-facility'/></h2>
+                        <button className='btn-section'><FormattedMessage id='homepage.search' /></button>
                     </div>
                 <div className='section-body'>
-                    <Slider {...settings}>
+                    <Slider {...this.props.settings}>
                         <div className='section-customize'>
                             <div className='bg-img medical-facility-img'></div>
                             <div className='section-title'>Cơ xương khớp 1</div>

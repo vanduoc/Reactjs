@@ -1,0 +1,116 @@
+.home-header-banner {
+    background: url('../../../assets/images/bookingcare-cover-4.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 80vh;
+    min-height: 650px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+
+    .content-up {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25),rgba(255, 255, 255, 0.1));
+        height: 65%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .title1 {
+            text-align: center;
+            font-size: 35px;
+            text-shadow: 1px 1px 1px #333;
+            margin-top: 30px;
+            font-weight: 500;
+        }
+    
+        .title2 {
+            text-align: center;
+            font-size: 35px;
+            text-shadow: 1px 1px 1px #333;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+    
+        .search {
+            width: fit-content;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            // padding: 10px;
+            border-radius: 25px;
+            background: #f7d800;
+    
+            i {
+                font-size: 1.2rem;
+                width: 50px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;            
+            }
+    
+            .search-input {
+                width: 410px;
+                height: 100%;
+                font-size: 1.3rem;
+                padding-right: 40px;
+                border: none;
+                outline: none;
+                background-color: transparent;
+            }
+        }
+    
+    }
+
+    .content-down {
+        height: 35%;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 1));
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            // gap: 30px;
+            text-align: center;
+            .option-child {
+                width: 190px;
+                padding: 10px;
+                cursor: pointer;
+
+                &:hover {
+                    color: #49bce2;
+                }
+                .icon-child {
+                    width: 50px;
+                    height: 50px;
+                    padding: 10px;
+                    background-color: white;
+                    box-shadow: 0 1px rgba(51, 51, 51, 0.397);
+                    border-radius: 50%;
+                    margin: 0 auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                i {
+                    color: #49bce2;
+                    font-size: 25px;
+                }
+
+                .text-child {
+                    font-size: 20px;
+                    font-weight: 500;
+                    padding-top: 5px;                    
+                }
+            }
+
+        }
+    }
+}

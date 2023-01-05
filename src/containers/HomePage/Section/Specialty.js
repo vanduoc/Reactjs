@@ -9,23 +9,15 @@ import "slick-carousel/slick/slick-theme.css";
 class Specialty extends Component {
 
     render() {
-        let settings = {
-            dots: false,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 1
-          };
-
         return (
             <div className='section-common section-specialty'>
                 <div className='section-container'>
                     <div className='section-header'>
-                        <h2 className='title-section'>Chuyên khoa phổ biến</h2>
-                        <button className='btn-section'>Xem thêm</button>
+                        <h2 className='title-section'><FormattedMessage id='homepage.popular-specialty'/></h2>
+                        <button className='btn-section'><FormattedMessage id='homepage.more-info'/></button>
                     </div>
                     <div className='section-body'>
-                        <Slider {...settings}>
+                        <Slider {...this.props.settings}>
                             <div className='section-customize'>
                                 <div className='bg-img specialty-img'></div>
                                 <div className='section-title'>Cơ xương khớp 1</div>

@@ -6,20 +6,29 @@ import MedicalFacility from './Section/MedicalFacility';
 import OutStandingDoctor from './Section/OutStandingDoctor';
 import Handbook from './Section/Handbook';
 import About from './Section/About';
+import HomeHeaderBanner from './Section/HomeHeaderBanner';
 import HomeFooter from './HomeFooter';
+
 import './HomePage.scss';
 
 class HomePage extends Component {
 
     render() {
-
+        let settings = {
+            dots: false,
+            infinite: false,
+            speed: 500,
+            slidesToShow: 4,
+            slidesToScroll: 1
+          };
         return (
             <div>
                 <HomeHeader />
-                <Specialty />
-                <MedicalFacility />
-                <OutStandingDoctor />
-                <Handbook />
+                <HomeHeaderBanner />
+                <Specialty settings={settings}/>
+                <MedicalFacility settings={settings}/>
+                <OutStandingDoctor settings={settings} />
+                <Handbook settings={settings}/>
                 <About />
                 <HomeFooter />
             </div>

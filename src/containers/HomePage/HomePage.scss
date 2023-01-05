@@ -19,9 +19,9 @@
 }
 
 .section-container {
-    width: 1170px;
-    margin-left: auto;
-    margin-right: auto;
+    // width: 1170px;
+    // margin-left: auto;
+    // margin-right: auto;
     padding-top: 25px;
     padding-bottom: 35px;
 
@@ -177,6 +177,10 @@
     &::before {
         font-size: 40px;
     }
+}
+
+.slick-disabled {
+    display: none !important;
 }
 
 .home-footer {

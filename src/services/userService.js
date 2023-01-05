@@ -32,4 +32,8 @@ const getTopDoctorHome = async (limit) => {
     return await axios.get(`/api/top-doctor-home?limit=${limit}`);
 }
 
-export { handleLoginApi, getAllUsers, createNewUserService, editUserService, deleteUserService, getAllCodeService, getTopDoctorHome }
+const getDetailDoctor = async (doctorId) => {
+    // return await axios.get(`/api/get-detail-doctor?id=${doctorId}`);
+}
+
+export { handleLoginApi, getAllUsers, createNewUserService, editUserService, deleteUserService, getAllCodeService, getTopDoctorHome, getDetailDoctor }

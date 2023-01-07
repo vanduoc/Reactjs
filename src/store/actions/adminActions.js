@@ -2,7 +2,8 @@ import actionTypes from './actionTypes';
 import { toast } from 'react-toastify';
 import { getAllCodeService, createNewUserService, 
     getAllUsers, deleteUserService, editUserService, 
-    getTopDoctorHome, getAllDoctors, saveInforDoctor } from '../../services/userService';
+    getTopDoctorHome, getAllDoctors, saveInforDoctor, getDetailDoctor } from '../../services/userService';
+import { dispatch } from '../../redux';
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -258,4 +259,28 @@ const saveDetailDoctorSuccess = () => ({
 
 const saveDetailDoctorFailed = () => ({
     type: actionTypes.SAVE_INFOR_DOCTOR_FAILED
+})
+
+export const fetchInforDoctorById = (id) => {
+    return async(dispatch, getState) => {
+        try {
+            let res = await getDetailDoctor(id);
+            if (res && res.errCode === 0) {
+                dispatch(fetchInforDoctorSuccess(res.data));
+            } else
+                dispatch(fetchInforDoctorFailed());
+        } catch (error) {
+            console.log(error);
+            dispatch(fetchInforDoctorFailed());
+        }
+    }
+}
+
+const fetchInforDoctorSuccess = (data) => ({
+    type: actionTypes.FETCH_INFOR_DOCTOR_SUCCESS,
+    data
+})
+
+const fetchInforDoctorFailed = () => ({
+    type: actionTypes.FETCH_INFOR_DOCTOR_FAILED
 })

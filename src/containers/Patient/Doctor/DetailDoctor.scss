@@ -7,9 +7,7 @@
 
     .intro-doctor{
         display: flex;
-        height: 100px;
         .content-left{
-            background-image: url('../../../../src/assets/images/bookingcare-cover-4.jpg');
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;
@@ -32,5 +30,9 @@
             }
 
         }
+    }
+
+    .detail-infor-doctor {
+        margin-top: 15px;
     }
 }

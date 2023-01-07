@@ -41,7 +41,7 @@ const saveInforDoctor = async(data) => {
 }
 
 const getDetailDoctor = async (doctorId) => {
-    // return await axios.get(`/api/get-detail-doctor?id=${doctorId}`);
+    return await axios.get(`/api/get-infor-doctor-by-id?id=${doctorId}`);
 }
 
 export { handleLoginApi, getAllUsers, createNewUserService, 

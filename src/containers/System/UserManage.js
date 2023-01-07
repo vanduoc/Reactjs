@@ -30,7 +30,6 @@ class UserManage extends Component {
                 arrUsers: response.users,
             })
         }
-        console.log('get user from node.js', response);
     }
 
     handleClickAddNewUser = () => {

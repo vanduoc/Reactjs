@@ -18,6 +18,7 @@ import DetailDoctor from '../containers/Patient/Doctor/DetailDoctor'
 // import Header from './Header/Header';
 import System from '../routes/System';
 import CustomScrollbars from '../components/CustomScrollbars'
+import Doctor from '../routes/Doctor';
 
 // import { CustomToastCloseButton } from '../components/CustomToast';
 
@@ -52,6 +53,7 @@ class App extends Component {
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
+                                    <Route path={path.DOCTOR} component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
                                 </Switch>

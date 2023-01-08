@@ -3,7 +3,6 @@ import { toast } from 'react-toastify';
 import { getAllCodeService, createNewUserService, 
     getAllUsers, deleteUserService, editUserService, 
     getTopDoctorHome, getAllDoctors, saveInforDoctor, getDetailDoctor } from '../../services/userService';
-import { dispatch } from '../../redux';
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {

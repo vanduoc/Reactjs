@@ -2,7 +2,9 @@ import actionTypes from './actionTypes';
 import { toast } from 'react-toastify';
 import { getAllCodeService, createNewUserService, 
     getAllUsers, deleteUserService, editUserService, 
-    getTopDoctorHome, getAllDoctors, saveInforDoctor, getDetailDoctor } from '../../services/userService';
+    getTopDoctorHome, getAllDoctors, saveInforDoctor, getDetailDoctor,
+
+    } from '../../services/userService';
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -282,4 +284,28 @@ const fetchInforDoctorSuccess = (data) => ({
 
 const fetchInforDoctorFailed = () => ({
     type: actionTypes.FETCH_INFOR_DOCTOR_FAILED
+})
+
+export const fetchAllScheduleTime = () => {
+    return async(dispatch, getState) => {
+        try {
+            let res = await getAllCodeService('TIME');
+        if (res && res.errCode === 0) {
+            dispatch(fetchAllScheduleTimeSuccess(res.data));
+        }
+        else dispatch(fetchAllScheduleTimeFailed());
+        } catch (error) {
+            console.log(error);
+            dispatch(fetchAllScheduleTimeFailed());
+        }
+    }
+}
+
+const fetchAllScheduleTimeSuccess = (data) => ({
+    type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+    data
+})
+
+const fetchAllScheduleTimeFailed = () => ({
+    type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED
 })

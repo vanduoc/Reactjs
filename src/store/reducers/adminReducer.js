@@ -8,6 +8,7 @@ const initialState = {
     users: [],
     doctors: [],
     topDoctorHome: [],
+    allScheduleTime: [],
     isLoadingGender: false,
     isLoadingPosition: false,
     isLoadingRole: false,
@@ -120,6 +121,18 @@ const adminReducer = (state = initialState, action) => {
                 ...state,
                 currentDoctor: []
             }
+        case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS:
+        return {
+            ...state,
+            allScheduleTime: action.data
+        }
+
+        case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED:
+            return {
+                ...state,
+                allScheduleTime: []
+            }
+
             default:
             return state;
     }

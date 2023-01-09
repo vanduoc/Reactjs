@@ -6,8 +6,8 @@ import { FormattedMessage } from 'react-intl';
 import * as actions from '../../../store/actions'
 import { LANGUAGES, dateFormat } from '../../../utils';
 import DatePicker from '../../../components/Input/DatePicker'
-import moment from 'moment';
 import './ManageShedule.scss'
+import { saveBulkCreateSchedule } from '../../../services/userService';
 
 class ManageShedule extends Component {
     constructor(props){
@@ -83,10 +83,11 @@ class ManageShedule extends Component {
         }
       }
 
-    handleSaveSchedule = () => {
+    handleSaveSchedule = async() => {
         let data = this.validateAndChangeDataSaved();
         if (data) {
-            console.log(data)
+            let res = await saveBulkCreateSchedule(data);
+            console.log(res)
         }
     }
 
@@ -107,13 +108,12 @@ class ManageShedule extends Component {
             allScheduleTimeSelected = allScheduleTime.filter((item) => {return item.isSelected});
         }
         if(allScheduleTimeSelected && allScheduleTimeSelected.length > 0) {
-            let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
-            let time = allScheduleTimeSelected.map(item => item.keyMap)
-            data = {
+            let formatedDate = new Date(currentDate).getTime();
+            data = allScheduleTimeSelected.map(item => ({
                 doctorId: selectedDoctor.value,
-                time: time,
+                timeType: item.keyMap,
                 date: formatedDate,
-            }
+            }))
         } else {
             alert('Invalid schedule time!');
             return false;

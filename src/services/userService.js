@@ -44,8 +44,12 @@ const getDetailDoctor = async (doctorId) => {
     return await axios.get(`/api/get-infor-doctor-by-id?id=${doctorId}`);
 }
 
+const saveBulkCreateSchedule = async(data) => {
+    return await axios.post('/api/bulk-create-schedule', data)
+}
+
 export { handleLoginApi, getAllUsers, createNewUserService, 
         editUserService, deleteUserService, 
         getAllCodeService, getTopDoctorHome, getDetailDoctor, getAllDoctors,
-        saveInforDoctor
+        saveInforDoctor, saveBulkCreateSchedule
     }

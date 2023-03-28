@@ -11,7 +11,7 @@ class About extends Component {
         
         return (
             <div className='section-common section-about'>
-                <div className='section-container'>
+                <div className='section-container-homepage'>
                     <div className='section-header'>
                         <h2 className='title-section'>Truyền thông nói về Chúng tôi</h2>
                     </div>

@@ -1,0 +1,74 @@
+.detail-clinic-container {
+    //header
+    .detail-clinic-header {
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background-size: cover !important;
+            
+        .overlay {
+            background: linear-gradient(rgba(255, 255, 255, 0.8),rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 1)) !important;
+            padding: 10px 0 0 0;
+            
+            .clinic-content {
+                max-width: 1150px;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 0 10px;
+                
+                .intro-content {
+                    // max-height: 186px;
+                    overflow: hidden;
+                }
+
+                .read-more-btn, .read-litle-btn {
+                    padding: 8px 0;
+                    background-color: transparent;
+                    bottom: 0;
+                    width: 100%;
+                    color: #288ad6;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    //list doctor
+    .list-doctor-infor-container {
+        background-color: #eee;
+        min-height: 400px;
+        overflow: hidden;
+        .wrapper-list-doctor-infor {
+            padding-top: 15px;
+            max-width: 1150px;
+            margin: auto;
+            .filter-btn {
+                display: inline-block;
+                min-width: 150px;
+                height: 38px;
+                margin: 10px 0;
+            }
+    
+            // Customize Select component
+            .css-13cymwt-control {
+                border-color: #ced4da !important;
+                outline: none !important;
+            }
+            .css-t3ipsp-control {
+                border-color: #ced4da !important;
+                box-shadow: none !important;
+                outline: none !important;
+            }
+    
+            .css-1u9des2-indicatorSeparator {
+                display: none;
+            }
+            // End customize Select component
+
+            .wrapper-doctor-infor-item {
+                background-color: white;
+                box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+                border-radius: 8px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}

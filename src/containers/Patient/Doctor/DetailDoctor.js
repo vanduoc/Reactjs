@@ -4,6 +4,8 @@ import HomeHeader from '../../HomePage/HomeHeader';
 import * as actions from '../../../store/actions'
 import './DetailDoctor.scss'
 import { LANGUAGES } from '../../../utils';
+import DoctorSchedule from './DoctorSchedule';
+import DoctorExtraInfor from './DoctorExtraInfor';
 
 class DetailDoctor extends Component {
     constructor(props) {
@@ -29,10 +31,10 @@ class DetailDoctor extends Component {
     }
 
     render() {
-        console.log(this.state);
         let reviewImageURL = this.state.currentDoctor.image;
         let language = this.props.language;
-        let {Markdown, positionData, firstName, lastName} = this.state.currentDoctor;
+        let {Markdown, positionData, firstName, lastName } = this.state.currentDoctor;
+        let currentDoctor = this.state.currentDoctor;
         let position = '';
         let name = '';
         if (firstName && lastName) {
@@ -45,23 +47,35 @@ class DetailDoctor extends Component {
             <React.Fragment>
                 <HomeHeader />
                 <div className='doctor-detail-container'>
-                    <div className='intro-doctor'>
-                        <div className='content-left' style={{ backgroundImage: `url(${reviewImageURL}`}}>
+                    <div className='content-up'>
+                        <div className='intro-doctor'>
+                            <div className='content-left' style={{ backgroundImage: `url(${reviewImageURL}`}}>
+                            </div>
+                            <div className='content-right'>
+                                <h3 className='doctor-name'>{`${position} ${name}`}</h3>
+                                <p className='doctor-describe'>{
+                                    Markdown ? `${Markdown.description}`: ''
+                                }</p>
+                            </div>
                         </div>
-                        <div className='content-right'>
-                            <h3 className='doctor-name'>{`${position} ${name}`}</h3>
-                            <p className='doctor-describe'>{
-                                Markdown ? `${Markdown.description}`: ''
-                            }</p>
+                        <div className='schedule-doctor'>
+                                <div className='schedule-content-left'>
+                                    <DoctorSchedule currentDoctorId={currentDoctor.id}/>
+                                </div>
+                                <div className='schedule-content-right'>
+                                    <DoctorExtraInfor idFromParent={currentDoctor.id} />
+                                </div>
                         </div>
                     </div>
-                    <div className='schedule-doctor'>
-
+                    <div className='content-down'>
+                        <div className='content-down-wrapper'>
+                            <div className='detail-infor-doctor'>
+                                { Markdown ? <div dangerouslySetInnerHTML={{__html: Markdown.contentHTML}}></div>: ''}
+                            </div>
+                            <h3>Phản hồi của bệnh nhân sau khi đi khám</h3>
+                            <div className='comment-about-doctor'></div>
+                        </div>
                     </div>
-                    <div className='detail-infor-doctor'>
-                    { Markdown ? <div dangerouslySetInnerHTML={{__html: Markdown.contentHTML}}></div>: ''}
-                    </div>
-                    <div className='comment-about-doctor'></div>
                 </div>
             </React.Fragment>
         );

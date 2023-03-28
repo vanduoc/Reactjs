@@ -12,7 +12,9 @@ const initialState = {
     isLoadingGender: false,
     isLoadingPosition: false,
     isLoadingRole: false,
-    currentDoctor: {}
+    specialties: [],
+    currentDoctor: {},
+    allRequiredDoctorInfor: {}
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -121,6 +123,16 @@ const adminReducer = (state = initialState, action) => {
                 ...state,
                 currentDoctor: []
             }
+        case actionTypes.SAVE_INFOR_DOCTOR_SUCCESS:
+            return {
+                ...state,
+                isSavedDoctorInforSuccess: true,
+            }
+        case actionTypes.SAVE_INFOR_DOCTOR_FAILED:
+            return {
+                ...state,
+                isSavedDoctorInforSuccess: false
+            }
         case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS:
         return {
             ...state,
@@ -133,8 +145,29 @@ const adminReducer = (state = initialState, action) => {
                 allScheduleTime: []
             }
 
-            default:
-            return state;
+        case actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_SUCCESS:
+            return {
+                ...state,
+                allRequiredDoctorInfor: action.data
+            }
+            
+        case actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAILED:
+            return {
+                ...state,
+                allRequiredDoctorInfor: {}
+            }
+        case actionTypes.FETCH_ALL_SPECIALTY_SUCCESS: 
+            return {
+                ...state,
+                specialties: action.data,
+            }
+        case actionTypes.FETCH_ALL_SPECIALTY_FAILED:
+            return {
+                ...state
+            }
+
+        default:
+        return state;
     }
 }
 export default adminReducer;

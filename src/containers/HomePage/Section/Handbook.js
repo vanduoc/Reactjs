@@ -19,7 +19,7 @@ class Handbook extends Component {
 
         return (
             <div className='section-common section-handbook'>
-                <div className='section-container'>
+                <div className='section-container-homepage'>
                     <div className='section-header'>
                         <h2 className='title-section'><FormattedMessage id="homepage.handbook"/></h2>
                         <button className='btn-section'><FormattedMessage id="homepage.all-posts"/></button>

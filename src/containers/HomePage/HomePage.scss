@@ -18,10 +18,10 @@
     }
 }
 
-.section-container {
-    // width: 1170px;
-    // margin-left: auto;
-    // margin-right: auto;
+.section-container-homepage {
+    width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 25px;
     padding-bottom: 35px;
 
@@ -56,6 +56,8 @@
         .section-customize {
             padding: 5px;
             cursor: pointer;
+            text-decoration: none;
+            color: black;
 
             &:hover {
                 color: #49bce2;
@@ -76,10 +78,10 @@
                 background-color: #eee;
 
                 &.specialty-img {
-                    background-image: url('../../assets/images/specialty/co-xuong-khop.jpg');
+                    // background-image: url('../../assets/images/specialty/co-xuong-khop.jpg');
                 }
                 &.medical-facility-img {
-                    background-image: url('../../assets/images/medicalFacility/benh-vien-cho-ray-h1.jpg');
+                    // background-image: url('../../assets/images/medicalFacility/benh-vien-cho-ray-h1.jpg');
                 }
                 &.outstanding-doctor-img {
                     // background-image: url('../../assets/images/outStandingDoctor/bs-hoai-huong.jpg');

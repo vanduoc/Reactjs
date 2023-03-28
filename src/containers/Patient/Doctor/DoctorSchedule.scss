@@ -1,0 +1,123 @@
+.doctor-schedule-container {
+    text-transform: capitalize !important;
+    .all-schedule {
+        color: #0071ba;
+        .form-select-schedule {
+            min-width: 160px;
+            max-width: 180px;
+        }
+    }
+
+    .all-variable-time_header {
+        padding-top: 18px;
+        font-size: 18px;
+        font-weight: 600;
+        text-transform: uppercase;
+         
+        i {
+            font-size: 17px;
+            font-weight: 500;
+            margin-right: 5px;
+        }
+    }
+    .all-variable-time {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+
+        .btn-doctor-schedule-item {
+            min-width: 138px;
+            max-width: 190px;
+            background-color: #ffc10e;
+            font-size: 16px;
+            border-radius: 2px;
+            font-weight: bold;
+            color: rgb(20, 20, 20);
+            padding: 5px 12px;
+            border: 3px solid transparent;
+            outline: none;
+
+            &:hover {
+                border-color: #49bce2;
+            }
+        }
+
+        .no-schedule {
+            font-style: italic;
+            font-size: 14px;
+        }
+        
+        .book-free {
+            display: block;
+            width: 100%;
+            margin-top: 5px;
+            color: #333;
+            font-size: 14px;
+
+            i {
+                padding-right: 3px;
+                margin-bottom: 2px;
+                font-size: 18px;
+            }
+        }
+    }
+
+    //custom Select component
+    .css-1dimb5e-singleValue {
+        color: #0071ba;
+    }
+    .css-13cymwt-control {
+        border: none;
+        border-radius: 0;
+        border-bottom: 2px solid rgb(172, 172, 172);
+        cursor: pointer;
+
+    }
+    .css-t3ipsp-control {
+        border: none;
+        outline: none !important;
+        box-shadow: none;
+        border-radius: 0;
+        border-bottom: 3px solid rgb(172, 172, 172);
+        cursor: pointer;
+
+        &:hover {
+            border-color: rgb(172, 172, 172);
+        }
+    }
+    .css-1u9des2-indicatorSeparator{
+        display: none;
+    }
+    .css-1xc3v61-indicatorContainer {
+        color: #0071ba;
+        &:hover {
+            color: #0071ba;
+        }
+    }
+    .css-15lsz6c-indicatorContainer {
+        color: #0071ba;
+        
+        &:hover {
+            color: #0071ba;
+        }
+    }
+    .css-tr4s17-option {
+        cursor: pointer;
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+    .css-10wo9uf-option  {
+        cursor: pointer;
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+    .css-d7l1ni-option {
+        cursor: pointer;
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+
+    // End custom select component
+}
+

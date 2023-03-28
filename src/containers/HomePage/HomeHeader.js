@@ -6,6 +6,7 @@ import { LANGUAGES} from '../../utils/constant';
 import { changeLanguageApp } from '../../store/actions';
 
 import * as actions from "../../store/actions";
+import { Link } from 'react-router-dom';
 
 class HomeHeader extends Component {
 
@@ -24,8 +25,8 @@ class HomeHeader extends Component {
                 <div className='home-header-content'>
                     <div className='left-content'>
                         <i className='fas fa-bars'></i>
-                        <div className='header-logo'>
-                        </div>
+                        <Link to='/home' className='header-logo'>
+                        </Link>
                     </div>
                     <div className='center-content'>
                         <div className='child-content'>

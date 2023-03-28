@@ -68,5 +68,49 @@
         "choose-doctor": "Choose doctor",
         "choose-date": "Choose date",
         "save": "Save"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Schedule",
+            "no-schedule": "The doctor doses not have an appointments during this time, please choose another time!",
+            "book-free": "Select and book (booking fee 0VND)"
+        },
+        "extra-infor-doctor": {
+            "examination-price": "Examination price: ",
+            "see-more": "See more",
+            "insurance": "Applicable type of insurance: ",
+            "hide-price-table": "Hide price table",
+            "note": "Note",
+            "clinic-name": "Clinic's name",
+            "clinic-address": "Clinic's address",
+            "payment": "The patient can pay the cost by"
+        },
+        "booking-modal": {
+            "title": "Information to book a medical appointment",
+            "fullName": "Fullname",
+            "phoneNumber": "Phone number",
+            "email": "Email",
+            "address": "Address",
+            "reason": "Reason for examination",
+            "birhtday": "Birtday",
+            "gender": "Gender",
+            "btnConfirm": "Confirm",
+            "close": "Close"
+        }
+    },
+    "admin": {
+        "manage-doctor": {
+            "title": "Create more information doctors",
+            "choose-doctor": "Select doctor",
+            "introductory": "Introductory information",
+            "add": "Create",
+            "save": "Save",
+            "price": "Select price",
+            "payment": "Select payment",
+            "province": "Select province",
+            "choose clinic": "Choose clinic",
+            "choose-speciality": "Choose specialty",
+            "note": "Note"
+        }
     }
 }

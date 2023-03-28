@@ -68,6 +68,50 @@
         "choose-doctor": "Chọn bác sĩ",
         "choose-date": "Chọn ngày khám",
         "save": "Lưu thông tin"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Lịch khám",
+            "no-schedule": "Bác sĩ không Có Lịch Hẹn Trong Thời Gian Này, Vui Lòng Chọn Thời Gian Khác!",
+            "book-free": "Chọn và đặt (phí đặt lịch 0đ)"
+        },
+        "extra-infor-doctor": {
+            "examination-price": "Giá khám: ",
+            "insurance": "LOẠI BẢO HIỂM ÁP DỤNG: ",
+            "see-more": "Xem chi tiết",
+            "hide-price-table": "Ẩn bảng giá",
+            "note": "Ghi chú",
+            "clinic-name": "Tên phòng khám",
+            "clinic-address": "Địa chỉ phòng khám",
+            "payment": "Người bệnh có thể thanh toán chi phí bằng"
+        },
+        "booking-modal": {
+            "title": "Thông tin đặt lịch khám bệnh",
+            "fullName": "Họ và tên",
+            "phoneNumber": "Số điện thoại",
+            "email": "Địa chỉ email",
+            "address": "Địa chỉ liên lạc",
+            "reason": "Lý do khám",
+            "birthday": "Ngày sinh",
+            "gender": "Giới tính",
+            "btnConfirm": "Xác nhận",
+            "close": "Đóng"
+        }
+    },
+    "admin": {
+        "manage-doctor": {
+            "title": "Tạo thêm thông tin doctors",
+            "choose-doctor": "Chọn bác sĩ",
+            "introductory": "Thông tin giới thiệu",
+            "add": "Tạo thông tin",
+            "save": "Lưu thông tin",
+            "price": "Chọn giá",
+            "payment": "Chọn phương thức thanh toán",
+            "province": "Chọn tỉnh thành",
+            "choose-clinic": "Chọn phòng khám",
+            "choose-specialty": "Chọn chuyên khoa",
+            "note": "Ghi chú"
+        }
     }
     
 }

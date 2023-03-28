@@ -1,0 +1,43 @@
+.profile-container {
+    display: flex;
+
+    .content-left{
+        width: 80px;
+        height: 80px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        border-radius: 50%;
+        box-shadow: 0 0 3px rgb(175, 175, 175);
+    }
+
+    .content-right {
+        margin-left: 15px;
+        flex: 1;
+
+        .doctor-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(2, 130, 216, 0.952);
+        }
+
+        .doctor-description {
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .doctor-address {
+            font-size: 14px;
+            i {
+                margin-right: 4px;
+            }
+        }
+
+    }
+
+}
+.examination-price {
+    font-weight: 600;
+    margin-left: 10px;
+    margin-top: 5px;
+}

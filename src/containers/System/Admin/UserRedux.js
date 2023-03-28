@@ -92,7 +92,6 @@ class UserRedux extends Component {
         if(files.length > 0) {
             let file = files[0];
             let fileToBase64 = await CommonUtils.convertFileToBase64(file);
-            console.log(fileToBase64);
             let objectUrl = URL.createObjectURL(file);
             this.setState({
                 uploadImageUrl: objectUrl,

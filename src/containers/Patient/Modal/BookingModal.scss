@@ -1,0 +1,87 @@
+.modal-booking-container {
+    .form-control {
+        outline: none;
+        box-shadow: none !important;
+    }
+    
+    .modal-booking-header {
+        font-weight: 600;
+        font-size: 14px;
+        background-color: #0071ba;
+        padding: 10px 15px;
+        color: white;
+        font-size: 30px;
+        .close {
+            background-color: transparent;
+            outline: none;
+            border: none;
+            color: white;
+            width: 32px;
+            cursor: pointer;
+            margin-right: -5px;
+            line-height: 30px;
+            
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+    }
+    .modal-booking-content {
+        
+        .modal-booking-body {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px 20px;
+
+            .price-item {
+                // padding: 10px 20px;
+                font-weight: 600;
+                font-size: 15px;
+                display: block; 
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .form-group {
+                padding-bottom: 20px;
+                &.pl-10 {
+                    padding-left: 10px;
+                }
+                &.pr-10 {
+                    padding-right: 10px;
+                }
+            }
+
+            .list-button {
+                display: inline;
+                margin-left: auto;
+                
+                button {
+                    outline: none;
+                    border: none;
+                    padding: 5px 20px;
+                    border-radius: 3px;
+                    font-weight: 600;
+                }
+                .btn-save {
+                    background-color: #0071ba;
+                    color: white;
+
+                    &:hover {
+                    background-color: #0169af;
+                    }
+                }
+
+                .btn-cancle {
+                    margin-left: 10px;
+                    background-color: #ccc;
+                    color: black;
+                }
+            }
+        }
+    }
+    .booking-time {
+        margin-left: 10px;
+    }
+
+}

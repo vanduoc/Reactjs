@@ -1,0 +1,101 @@
+.doctor-extra-infor-container {
+    .clinic-infor {
+        line-height: 30px;
+    
+        .clinic-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: rgb(129, 129, 129);
+            line-height: 25px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        
+        .clinic-name {
+            display: block;
+            font-size: 16px;
+            color: rgb(48, 48, 48);
+            font-weight: 600;
+        }
+        
+        .clinic-address {
+            display: block;
+        }
+                        
+        .price {
+            display: block;
+            border-top: 1px solid #ddd;
+            margin-top: 12px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            font-weight: bold;
+            color: #666666;
+            border-bottom: 1px solid #ddd;
+    
+            .num-price {
+                font-weight: 500;
+                padding-left: 3px;
+                color: #000;
+            }
+
+            .price-title {
+                text-transform: uppercase;
+            }
+
+            .see-more-price {
+                border: 1px solid #ddd;
+                border-radius: 2px;
+                font-weight: 500;
+
+                .price-up {
+                    background-color: #f8f8f8;
+                    padding: 5px 4px;
+                    .price-wrapper {
+                        display: flex;
+                        justify-content: space-between;
+                    
+                        .price-title {
+                            color: #000;
+                            text-transform: none;
+                        }
+                        .note {
+                            color: #666;
+                        }
+                    }
+                }
+
+                .price-down {
+                    background-color: #eee;
+                    border-top: 1px solid #ddd;
+                    padding: 8px 3px 3px 3px;
+                }
+            }
+            .hide-price-table {
+                text-decoration: none;
+                color: #49bce2;
+                font-weight: 500;
+                cursor: pointer;
+                display: inline-block;
+                margin-top: 5px;
+            }
+        }
+        
+        .insurance-infor {
+            display: block;
+            color: #666666;
+            font-weight: bold;
+            padding-top: 12px;
+
+            .insurance-title {
+                text-transform: uppercase;
+            }
+        }
+    
+        .see-more  {
+            text-decoration: none;
+            color: #49bce2;
+            font-weight: 500;
+            cursor: pointer;
+        }
+    }
+}

@@ -34,12 +34,11 @@ class OutStandingDoctor extends Component {
     }
 
     render() {
-        
-          let topDoctors = this.state.topDoctors;
-
+        console.log(this.state);
+        let topDoctors = this.state.topDoctors;
         return (
             <div className='section-common section-outstanding-doctor'>
-                <div className='section-container'>
+                <div className='section-container-homepage'>
                     <div className='section-header'>
                         <h2 className='title-section'><FormattedMessage id='homepage.outstanding-doctor' /></h2>
                         <button className='btn-section'><FormattedMessage id='homepage.search'/></button>
@@ -47,11 +46,13 @@ class OutStandingDoctor extends Component {
                 <div className='section-body'>
                     <Slider {...this.props.settings}>
                             { topDoctors && topDoctors.length > 0 && topDoctors.map((doctor, index) => {
-                                let nameVi = `${doctor.positionData.valueVi}, ${doctor.firstName} ${doctor.lastName}`
-                                let nameEn = `${doctor.positionData.valueEn}, ${doctor.firstName} ${doctor.lastName}`
+                                let nameVi = `${doctor.positionData.valueVi}, ${doctor.firstName} ${doctor.lastName}`;
+                                let nameEn = `${doctor.positionData.valueEn}, ${doctor.firstName} ${doctor.lastName}`;
                                 let imageBase64 ='';
+                                let specialty = doctor.Doctor_infor && doctor.Doctor_infor.doctorData ? doctor.Doctor_infor.doctorData.name : '';
                                 if (doctor.image) {
-                                    imageBase64 = new Buffer(doctor.image, 'base64').toString('binary');
+                                    // imageBase64 = new Buffer(doctor.image, 'base64').toString('binary');
+                                    imageBase64 = Buffer.from(doctor.image);
                                 }
                                 return (
                                     <div className='section-customize' key={index}>
@@ -60,7 +61,7 @@ class OutStandingDoctor extends Component {
                                                 <div className='bg-img outstanding-doctor-img' style={{backgroundImage: `url(${imageBase64})`}}></div>
                                                 <div className='section-title text-center'>
                                                     <h3>{this.props.language === LANGUAGES.VI ? nameVi : nameEn}</h3>
-                                                    <span className='doctor-special'>Da liễu</span>
+                                                    <span className='doctor-special'>{specialty}</span>
                                                 </div>
                                             </div>
                                         </div>

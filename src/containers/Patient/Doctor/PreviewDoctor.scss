@@ -1,0 +1,31 @@
+.wrapper-preview-doctor {
+    display: flex;
+    
+    .content-preview-left {
+        padding: 15px 10px 15px 15px;
+        width: 53%;
+        position: relative;
+
+        .see-more-btn {
+            position: absolute;
+            top: 105px;
+            left: 20px;
+            color: rgba(2, 130, 216, 0.95);
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+    
+    .content-preview-right {
+        border-right: 1px solid #ddd;
+        padding: 15px;
+        width: 47%;
+
+        .middle-separate {
+            width: 100%;
+            display: block;
+            border-bottom: 1px solid #ddd;
+            margin: 10px 0;
+        }
+    }
+}

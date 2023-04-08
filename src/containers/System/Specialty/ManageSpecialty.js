@@ -41,7 +41,6 @@ class ManageSpecialty extends Component {
         let files = e.target.files;
         if(files.length > 0) {
             let file = files[0];
-            console.log(file);
             let fileToBase64 = await CommonUtils.convertFileToBase64(file);
             this.setState({
                 imageBase64: fileToBase64,
@@ -137,6 +136,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
+    return {}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageSpecialty);

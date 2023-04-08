@@ -94,6 +94,14 @@ const fetchDetailClinic = async(id) => {
     return await axios.get(`/api/get-detail-clinic?id=${id}`);
 }
 
+const fetchPatientForDoctor = async (doctorId, date) => {
+    return await axios.get(`/api/get-patient-for-doctor?id=${doctorId}&date=${date}`);
+}
+
+const postSendRemedy = async (data) => {
+    return await axios.post(`/api/send-remedy`, data);
+}
+
 export { handleLoginApi, getAllUsers, createNewUserService, 
         editUserService, deleteUserService, 
         getAllCodeService, getTopDoctorHome, getDetailDoctor, getAllDoctors,
@@ -103,5 +111,5 @@ export { handleLoginApi, getAllUsers, createNewUserService,
         fetchAllSpecialty, fetchDoctorExtraInfor,
         fetchDetailSpecialty, fetchAllClinic,
         fetchOldDoctorExtraInfo, createNewClinic, 
-        fetchDetailClinic
+        fetchDetailClinic, fetchPatientForDoctor, postSendRemedy
     }

@@ -6,6 +6,10 @@ import './DetailDoctor.scss'
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
 import DoctorExtraInfor from './DoctorExtraInfor';
+import LikeAndShare from '../SocialPlugin/LikeAndShare';
+import Comment from '../SocialPlugin/Comment';
+import dotenv from 'dotenv';
+dotenv.config();
 
 class DetailDoctor extends Component {
     constructor(props) {
@@ -31,6 +35,7 @@ class DetailDoctor extends Component {
     }
 
     render() {
+        console.log('check dotenv', process.env);
         let reviewImageURL = this.state.currentDoctor.image;
         let language = this.props.language;
         let {Markdown, positionData, firstName, lastName } = this.state.currentDoctor;
@@ -43,6 +48,10 @@ class DetailDoctor extends Component {
         if (positionData) {
             position = language === LANGUAGES.VI ? `${positionData.valueVi}`: `${positionData.valueEn}`;
         }
+
+        let currentURL = process.env.REACT_APP_IS_LOCALHOST === 'true' ? 
+            "https://developers.facebook.com/docs/plugins/" : window.location.href;
+
         return (
             <React.Fragment>
                 <HomeHeader />
@@ -53,9 +62,14 @@ class DetailDoctor extends Component {
                             </div>
                             <div className='content-right'>
                                 <h3 className='doctor-name'>{`${position} ${name}`}</h3>
-                                <p className='doctor-describe'>{
-                                    Markdown ? `${Markdown.description}`: ''
-                                }</p>
+                                <p className='doctor-describe'>
+                                    {
+                                        Markdown ? `${Markdown.description}`: ''
+                                     }
+                                </p>
+                                <div className='like-share-plugin'>
+                                    <LikeAndShare dataHref={currentURL} />
+                                </div>
                             </div>
                         </div>
                         <div className='schedule-doctor'>
@@ -73,7 +87,12 @@ class DetailDoctor extends Component {
                                 { Markdown ? <div dangerouslySetInnerHTML={{__html: Markdown.contentHTML}}></div>: ''}
                             </div>
                             <h3>Phản hồi của bệnh nhân sau khi đi khám</h3>
-                            <div className='comment-about-doctor'></div>
+                            <div className='comment-about-doctor'>
+                                <Comment 
+                                    dataHref={currentURL}
+                                    width={'100%'}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

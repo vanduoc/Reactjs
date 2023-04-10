@@ -11,6 +11,7 @@ import _ from 'lodash';
 import { toast } from 'react-toastify';
 import { postPatientBookingAppointment } from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
+import LoadingOverlay from 'react-loading-overlay';
 
 class BookingModal extends Component {
     constructor(props) {
@@ -25,6 +26,7 @@ class BookingModal extends Component {
             genderSelectOption: '',
             selectedGender: '',
             reason: '',
+            isLoading: false
         }
     }
 
@@ -100,6 +102,9 @@ class BookingModal extends Component {
     }
 
     handleClickSubmit = async () => {
+        this.setState({
+            isLoading: true
+        })
         let birthDay = new Date(this.state.birthDay).getTime();
         let timeString = this.renderTimeBooking(this.state.dataFromParent);
         let doctorName = this.renderDoctorName(this.state.dataFromParent);
@@ -118,6 +123,9 @@ class BookingModal extends Component {
             language: this.props.language,
             timeString: timeString,
             doctorName: doctorName
+        })
+        this.setState({
+            isLoading: false
         })
         if (res && res.errCode === 0) {
             toast.success("Booking a new appointment Success!");
@@ -143,95 +151,102 @@ class BookingModal extends Component {
         let doctorId = dataFromParent && dataFromParent.doctorId ? dataFromParent.doctorId : '' ;
         
         return ( 
-            <Modal 
-                size='lg' 
-                isOpen={this.props.isOpen} 
-                toggle={this.toggle} 
-                className={'modal-booking-container'}
-                centered
-            >
-                <ModalHeader toggle={this.toggle} className="modal-booking-header"><FormattedMessage id="patient.booking-modal.title"/></ModalHeader>
-                <ModalBody>
-                    <div className="modal-booking-content row">
-                        <ProfileDoctor doctorId={doctorId} isShowDescriptionDoctor={true} isShowPrice/>
-                        <div className="booking-time">{this.renderTimeBooking(this.state.dataFromParent)}</div>
-                        <div className="modal-booking-body">
-                            <div className="form-group col-6 pr-10">
-                                <label className=""><FormattedMessage id="patient.booking-modal.fullName"/></label>
-                                <input 
-                                    className="form-control" 
-                                    placeholder="Nhập họ và tên..."
-                                    value={this.state.fullName}
-                                    onChange={e => this.handleChangeInput(e, 'fullName')}
-                                />
-                            </div>
-                            <div className="form-group col-6 pl-10">
-                                <label className=""><FormattedMessage id="patient.booking-modal.phoneNumber"/></label>
-                                <input 
-                                    className="form-control" 
-                                    placeholder="039 xxxx xxx"
-                                    value={this.state.phoneNumber}
-                                    onChange={e => this.handleChangeInput(e, 'phoneNumber')}
-                                />
-                            </div>
-                            <div className="form-group col-6 pr-10">
-                                <label className=""><FormattedMessage id="patient.booking-modal.email"/></label>
-                                <input 
-                                    className="form-control" 
-                                    placeholder="Nhập email..."
-                                    value={this.state.email}
-                                    onChange={e => this.handleChangeInput(e, 'email')}
-                                />
-                            </div>
-                            <div className="form-group col-6 pl-10">
-                                <label className=""><FormattedMessage id="patient.booking-modal.address"/></label>
-                                <input 
-                                    className="form-control" 
-                                    placeholder="tên đường, xã/thị trấn..."
-                                    value={this.state.address}
-                                    onChange={e => this.handleChangeInput(e, 'address')}
-                                />
-                            </div>
-                            <div className="form-group col-6 pr-10">
-                                <label className=""><FormattedMessage id="patient.booking-modal.birthday"/></label>
-                                <DatePicker
-                                    className='form-control'
-                                    onChange={this.handleOnchangeDatePicker}
-                                />
-                            </div>
-                            <div className="form-group col-6 pl-10">
-                                <label className=""><FormattedMessage id="patient.booking-modal.gender"/></label>
-                                <Select
-                                    value={this.state.selectedGender}
-                                    options={this.state.genderSelectOption}
-                                    onChange = {this.handleChangeGender}
-                                />
-                            </div>
-                            <div className="note-reason form-group col-12">
-                                <label className=""><FormattedMessage id="patient.booking-modal.reason"/></label>
-                                <textarea
-                                    className="form-control"
-                                    onChange={(e) => this.handleChangeInput(e, 'reason')}
-                                >
-                                </textarea>
-                            </div>
-
-                        </div>
-                    </div>
-                </ModalBody> 
-                <ModalFooter>
-                <Button 
-                    color="primary" 
-                    className='px-3'
-                    onClick={this.handleClickSubmit}
+            // <LoadingOverlay
+            //         active={this.state.isLoading}
+            //         spinner
+            //         text='Đang gửi...'
+            // >
+                // <></>
+                <Modal 
+                    size='lg' 
+                    isOpen={this.props.isOpen} 
+                    toggle={this.toggle} 
+                    className={'modal-booking-container'}
+                    centered
                 >
-                    <FormattedMessage id="patient.booking-modal.btnConfirm"/>
-                </Button>{' '}
-                <Button color="secondary" className='px-3' onClick={this.toggle}>
-                <FormattedMessage id="patient.booking-modal.close"/>
-                </Button>
-                </ModalFooter>
-            </Modal>
+                    <ModalHeader toggle={this.toggle} className="modal-booking-header"><FormattedMessage id="patient.booking-modal.title"/></ModalHeader>
+                    <ModalBody>
+                        <div className="modal-booking-content row">
+                            <ProfileDoctor doctorId={doctorId} isShowDescriptionDoctor={true} isShowPrice/>
+                            <div className="booking-time">{this.renderTimeBooking(this.state.dataFromParent)}</div>
+                            <div className="modal-booking-body">
+                                <div className="form-group col-6 pr-10">
+                                    <label className=""><FormattedMessage id="patient.booking-modal.fullName"/></label>
+                                    <input 
+                                        className="form-control" 
+                                        placeholder="Nhập họ và tên..."
+                                        value={this.state.fullName}
+                                        onChange={e => this.handleChangeInput(e, 'fullName')}
+                                    />
+                                </div>
+                                <div className="form-group col-6 pl-10">
+                                    <label className=""><FormattedMessage id="patient.booking-modal.phoneNumber"/></label>
+                                    <input 
+                                        className="form-control" 
+                                        placeholder="039 xxxx xxx"
+                                        value={this.state.phoneNumber}
+                                        onChange={e => this.handleChangeInput(e, 'phoneNumber')}
+                                    />
+                                </div>
+                                <div className="form-group col-6 pr-10">
+                                    <label className=""><FormattedMessage id="patient.booking-modal.email"/></label>
+                                    <input 
+                                        className="form-control" 
+                                        placeholder="Nhập email..."
+                                        value={this.state.email}
+                                        onChange={e => this.handleChangeInput(e, 'email')}
+                                    />
+                                </div>
+                                <div className="form-group col-6 pl-10">
+                                    <label className=""><FormattedMessage id="patient.booking-modal.address"/></label>
+                                    <input 
+                                        className="form-control" 
+                                        placeholder="tên đường, xã/thị trấn..."
+                                        value={this.state.address}
+                                        onChange={e => this.handleChangeInput(e, 'address')}
+                                    />
+                                </div>
+                                <div className="form-group col-6 pr-10">
+                                    <label className=""><FormattedMessage id="patient.booking-modal.birthday"/></label>
+                                    <DatePicker
+                                        className='form-control'
+                                        onChange={this.handleOnchangeDatePicker}
+                                    />
+                                </div>
+                                <div className="form-group col-6 pl-10">
+                                    <label className=""><FormattedMessage id="patient.booking-modal.gender"/></label>
+                                    <Select
+                                        value={this.state.selectedGender}
+                                        options={this.state.genderSelectOption}
+                                        onChange = {this.handleChangeGender}
+                                    />
+                                </div>
+                                <div className="note-reason form-group col-12">
+                                    <label className=""><FormattedMessage id="patient.booking-modal.reason"/></label>
+                                    <textarea
+                                        className="form-control"
+                                        onChange={(e) => this.handleChangeInput(e, 'reason')}
+                                    >
+                                    </textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                    </ModalBody> 
+                    <ModalFooter>
+                    <Button 
+                        color="primary" 
+                        className='px-3'
+                        onClick={this.handleClickSubmit}
+                    >
+                        <FormattedMessage id="patient.booking-modal.btnConfirm"/>
+                    </Button>{' '}
+                    <Button color="secondary" className='px-3' onClick={this.toggle}>
+                    <FormattedMessage id="patient.booking-modal.close"/>
+                    </Button>
+                    </ModalFooter>
+                </Modal>
+            // </LoadingOverlay>
         )
     }
 }

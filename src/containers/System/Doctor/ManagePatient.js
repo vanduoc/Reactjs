@@ -63,6 +63,9 @@ class ManagePatient extends Component {
             isLoading: true
         })
         let res = await postSendRemedy(data);
+        this.setState({
+            isLoading: false
+        })
         if (res && res.errCode === 0) {
             toast.success('Successfully !!!');
             this.closeRemedyModal();
@@ -71,9 +74,7 @@ class ManagePatient extends Component {
         else {
             toast.error('Something went wrong...!!!');
         }
-        this.setState({
-            isLoading: false
-        })
+        
     }
 
     closeRemedyModal = () => {
